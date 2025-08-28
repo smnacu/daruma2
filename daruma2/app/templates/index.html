@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daruma Consulting SRL</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/styles_minimal.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">
+                <span>Daruma</span>
+            </a>
+            <div class="nav-links">
+                <a href="#servicios">Servicios</a>
+                <a href="#soluciones">Soluciones</a>
+                <a href="#soporte">Soporte</a>
+                <a href="#contacto">Contacto</a>
+                <button class="theme-toggle" aria-label="Cambiar tema">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-bg"></div>
+        <div class="geometric-bg"></div>
+        <div class="hero-content fade-in">
+            <h1>Soluciones Integrales de TI</h1>
+            <p>Transformamos empresas a través de la tecnología</p>
+            <div class="hero-buttons">
+                <a href="#contacto" class="cta-button">Comenzar Ahora <i class="fas fa-arrow-right"></i></a>
+                <a href="#servicios" class="cta-button" style="background: transparent; border: 2px solid var(--primary-color); color: var(--text-color);">Descubrir Más</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios Section -->
+    <section id="servicios">
+        <h2>Nuestros Servicios</h2>
+        <div class="servicios-grid">
+            <div class="servicio fade-in">
+                <i class="fas fa-shield-alt servicio-icon"></i>
+                <h3>Ciberseguridad</h3>
+                <p>Protección integral para su empresa con soluciones avanzadas de seguridad informática</p>
+            </div>
+            <div class="servicio fade-in">
+                <i class="fas fa-network-wired servicio-icon"></i>
+                <h3>Infraestructura</h3>
+                <p>Soluciones escalables y robustas para optimizar su infraestructura tecnológica</p>
+            </div>
+            <div class="servicio fade-in">
+                <i class="fas fa-code servicio-icon"></i>
+                <h3>Desarrollo de Software</h3>
+                <p>Creamos soluciones personalizadas que impulsan su negocio</p>
+            </div>
+            <div class="servicio fade-in">
+                <i class="fas fa-chart-line servicio-icon"></i>
+                <h3>Tango & Odoo</h3>
+                <p>Implementación y soporte especializado en sistemas ERP líderes</p>
+            </div>
+            <div class="servicio fade-in">
+                <i class="fas fa-home servicio-icon"></i>
+                <h3>Domótica & SCADA</h3>
+                <p>Automatización inteligente para hogares e industrias</p>
+            </div>
+            <div class="servicio fade-in">
+                <i class="fas fa-bolt servicio-icon"></i>
+                <h3>Consultoría Energética</h3>
+                <p>Optimización y eficiencia energética para su negocio</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Soporte Section -->
+    <section id="soporte">
+        <h2>Soporte Técnico</h2>
+        <div class="soporte-info">
+            <div class="system-info">
+                <h3>Información del Sistema</h3>
+                <p>Sistema Operativo: <span id="os-info">Detectando...</span></p>
+                <p>Dirección IP: <span id="ip-info">{{ client_ip }}</span></p>
+            </div>
+            <div class="quick-support">
+                <h3>Soporte Remoto</h3>
+                <p>Descargue TeamViewer QuickSupport para asistencia remota</p>
+                <a href="https://download.teamviewer.com/download/TeamViewerQS.exe" class="download-button">
+                    Descargar TeamViewer QuickSupport
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <div class="contact-info">
+            <p>¿Listo para transformar su negocio?</p>
+            <a href="mailto:contacto@darumaconsulting.com" class="cta-button">Enviar Email</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Daruma Consulting SRL. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="{{ url_for('static', path='/js/main.js') }}"></script>
+</body>
+</html>
