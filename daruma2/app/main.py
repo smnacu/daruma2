@@ -48,18 +48,26 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
 app = FastAPI(title="Daruma Consulting SRL")
 
 # Security Middleware
+# Load config from environment variables
+SECRET_KEY = os.getenv("SECRET_KEY", "tu_clave_secreta_aqui_para_desarrollo")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*, 127.0.0.1").split(",")
+CORS_ORIGINS = os.getenv("CORS_ORIGINS", "*").split(",")
+CONTACT_EMAIL = os.getenv("CONTACT_EMAIL", "contacto@darumaconsulting.com")
+TEAMVIEWER_LINK = os.getenv("TEAMVIEWER_LINK", "https://download.teamviewer.com/download/TeamViewerQS.exe")
+
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # En producción, especificar dominios exactos
+    allow_origins=CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-app.add_middleware(TrustedHostMiddleware, allowed_hosts=["*"])  # Configurar en producción
+app.add_middleware(TrustedHostMiddleware, allowed_hosts=ALLOWED_HOSTS)
 app.add_middleware(GZipMiddleware, minimum_size=1000)
 app.add_middleware(RateLimitMiddleware, max_requests=100, window_seconds=60)
-app.add_middleware(SessionMiddleware, secret_key="tu_clave_secreta_aqui")  # Cambiar en producción
+app.add_middleware(SessionMiddleware, secret_key=SECRET_KEY)
 
 # Mount static files
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
@@ -71,10 +79,13 @@ templates = Jinja2Templates(directory="app/templates")
 async def home(request: Request):
     # Get client's IP from headers or connection info
     client_ip = request.client.host
-    return templates.TemplateResponse(
-        "index.html",
-        {"request": request, "client_ip": client_ip}
-    )
+    context = {
+        "request": request,
+        "client_ip": client_ip,
+        "contact_email": CONTACT_EMAIL,
+        "teamviewer_link": TEAMVIEWER_LINK
+    }
+    return templates.TemplateResponse("index.html", context)
 
 if __name__ == "__main__":
     import uvicorn
